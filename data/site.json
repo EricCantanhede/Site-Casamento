@@ -1,55 +1,58 @@
 {
-  "heroBadge": "Filmes & Fotos para Casamentos · Ceará",
-  "heroTitle": "Momentos que ficam para <em>sempre</em>",
-  "heroSub": "Capturamos e filmamos a emoção real do seu grande dia com luz, arte e sentimento que atravessam o tempo.",
+  "heroBadge": "Filmes & Fotos para Casamentos · São Luis",
+  "heroTitle": "Mais do que fotos, uma história única",
+  "heroSub": "Cada casamento é estudado e planejado de forma que seja único e diferente do anterior. Nossa filosofia permite que seu evento seja inesquecível como merece.",
   "gallEye": "A História de Amor em Imagens",
   "gallTitle": "Cada foto conta um <em>capítulo único</em>",
   "gallDesc": "Do primeiro olhar ao \"sim\" — preservamos cada instante com a delicadeza que ele merece.",
   "quoteText": "Um casamento é um dia. Um bom casamento é uma vida inteira. Nossas produções guardam os dois.",
   "quoteAuthor": "— SC Weddings Production",
   "aboutEye": "Sobre Nós",
-  "aboutTitle": "A arte de eternizar <em>amor</em>",
-  "aboutBody": "Somos uma produtora especializada em filmes e fotografias para casamentos. Desde 2015 percorremos o Brasil capturando cerimônias com um olhar autêntico — valorizando cada detalhe, cada olhar, cada lágrima de felicidade.<br><br>Nossa abordagem é discreta e próxima: queremos que você esqueça a câmera e viva intensamente o momento.",
+  "aboutTitle": "A arte de eternizar amor",
+  "aboutBody": "Somos uma produtora especializada em filmes e fotografias para casamentos. Desde 2020 percorremos o Brasil capturando cerimônias com um olhar autêntico — valorizando cada detalhe, cada olhar, cada lágrima de felicidade.\n\nNossa abordagem é discreta e próxima: queremos que você esqueça a câmera e viva intensamente o momento.",
   "aboutSig": "SC Weddings",
   "testiEye": "Depoimentos",
   "testiTitle": "O que os casais <em>dizem</em>",
   "ctaEye": "Reserve sua data",
-  "ctaTitle": "Vamos contar a história<br>do seu <em>grande dia?</em>",
-  "footerTag": "Produtora de Filmes & Fotos para Casamentos · Ceará",
+  "ctaTitle": "Vamos contar a históriado seu grande dia?",
+  "footerTag": "Produtora de Filmes & Fotos para Casamentos · São Luis",
   "footerCopy": "© 2025 SC Weddings Production · Todos os direitos reservados",
   "vidEye": "Nossos Filmes",
   "vidTitle": "Cinema para o seu <em>grande dia</em>",
   "vidDesc": "Filmes de casamento que emocionam para sempre — com direção de arte, trilha e narrativa únicas.",
-  "wa": "",
+  "wa": "+55 98 984457640",
   "waMsg": "Olá! Vim pelo site e quero saber sobre filmes e fotos para casamento.",
-  "ig": "",
+  "ig": "https://www.instagram.com/summer.wedding.ec/",
   "fb": "",
-  "st1": 350, "st2": 10, "st3": 80, "st4": 12,
+  "st1": 50,
+  "st2": 6,
+  "st3": 120,
+  "st4": 12,
   "sl1": "Casamentos Realizados",
   "sl2": "Anos de Experiência",
   "sl3": "Fotos Entregues",
   "sl4": "Estados Atendidos",
   "showVideo": false,
-  "showMini": true,
+  "showMini": false,
   "images": {
-    "heroImg":  "resize/SMM_1654.jpg",
-    "chImg0":   "resize/SMM_1676.jpg",
-    "chImg1":   "resize/By@ericcorrea00-8036.jpg",
-    "chImg2":   "resize/_RNN5463.jpg",
-    "chImg3":   "resize/By@ericcorrea00-7990.jpg",
-    "chImg4":   "resize/By@ericcorrea00-7697-2.jpg",
-    "chImg5":   "resize/SMM_1951.jpg",
-    "mini1":    "resize/IMG_8855.jpg",
-    "mini2":    "resize/IMG_8857.jpg",
-    "mini3":    "resize/SMM_1665.jpg",
-    "mini4":    "resize/By@ericcorrea00-7700.jpg",
-    "mini5":    "resize/By@ericcorrea00-7909.jpg",
-    "mini6":    "resize/close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg",
-    "mini7":    "resize/FLORES2.png",
-    "mini8":    "resize/SMM_1951.jpg",
-    "aboutImg": "resize/SMM_1654.jpg",
+    "heroImg": "resize/SMM_1654.jpg",
+    "chImg0": "resize/SMM_1676.jpg",
+    "chImg1": "resize/By@ericcorrea00-8036.jpg",
+    "chImg2": "resize/_RNN5463.jpg",
+    "chImg3": "resize/By@ericcorrea00-7990.jpg",
+    "chImg4": "resize/By@ericcorrea00-7697-2.jpg",
+    "chImg5": "resize/SMM_1951.jpg",
+    "mini1": "resize/IMG_8855.jpg",
+    "mini2": "resize/IMG_8857.jpg",
+    "mini3": "resize/SMM_1665.jpg",
+    "mini4": "resize/By@ericcorrea00-7700.jpg",
+    "mini5": "resize/By@ericcorrea00-7909.jpg",
+    "mini6": "resize/close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg",
+    "mini7": "resize/FLORES2.png",
+    "mini8": "resize/SMM_1951.jpg",
+    "aboutImg": "resize/FLORES2.png",
     "quoteImg": "resize/FLORES2.png",
-    "ctaImg":   "resize/FLORES2.png",
+    "ctaImg": "resize/FLORES2.png",
     "miniL1": "Detalhes",
     "miniL2": "Cerimônia",
     "miniL3": "Casal",
@@ -60,25 +63,101 @@
     "miniL8": "Festa"
   },
   "chapters": [
-    { "num": "Cap. 01", "tag": "O Começo",    "title": "A Chegada da <em>Noiva</em>",      "desc": "O momento em que as portas se abrem e o tempo parece pausar. O véu, o vestido, o nervosismo misturado com alegria — tudo isso merece ser eternizado com a delicadeza que o instante pede." },
-    { "num": "Cap. 02", "tag": "Os Detalhes", "title": "Cada <em>Detalhe</em> Importa",    "desc": "As flores cuidadosamente escolhidas, o buquê que tremeu nas mãos, a aliança sobre o véu. São os pequenos detalhes que transformam memórias em obras de arte." },
-    { "num": "Cap. 03", "tag": "A Cerimônia", "title": "O <em>Sim</em> que Muda Tudo",     "desc": "Diante de todos os que amam, duas almas escolhem uma à outra. Nossa lente captura a emoção pura desse sim eterno." },
-    { "num": "Cap. 04", "tag": "As Emoções",  "title": "Lágrimas de <em>Felicidade</em>",  "desc": "A emoção que escapa nos olhos do noivo ao ver sua amada, ou nas mãos que se unem pela primeira vez. Somos especialistas em capturar o que as palavras não conseguem descrever." },
-    { "num": "Cap. 05", "tag": "O Casal",     "title": "Unidos para <em>Sempre</em>",      "desc": "O momento do casal a sós, ainda na euforia do dia, com a leveza de quem acaba de viver o maior dia de suas vidas. Retratos cheios de amor genuíno e conexão real." },
-    { "num": "Cap. 06", "tag": "A Celebração","title": "A Festa que <em>Transborda</em>",  "desc": "Dança, risos, abraços e brindis. A recepção é onde a história continua sendo escrita, com cada convidado fazendo parte desse capítulo inesquecível." }
+    {
+      "num": "Cap. 01",
+      "tag": "O Começo",
+      "title": "A Chegada da <em>Noiva</em>",
+      "desc": "O momento em que as portas se abrem e o tempo parece pausar. O véu, o vestido, o nervosismo misturado com alegria — tudo isso merece ser eternizado com a delicadeza que o instante pede."
+    },
+    {
+      "num": "Cap. 02",
+      "tag": "Os Detalhes",
+      "title": "Cada <em>Detalhe</em> Importa",
+      "desc": "As flores cuidadosamente escolhidas, o buquê que tremeu nas mãos, a aliança sobre o véu. São os pequenos detalhes que transformam memórias em obras de arte."
+    },
+    {
+      "num": "Cap. 03",
+      "tag": "A Cerimônia",
+      "title": "O <em>Sim</em> que Muda Tudo",
+      "desc": "Diante de todos os que amam, duas almas escolhem uma à outra. Nossa lente captura a emoção pura desse sim eterno."
+    },
+    {
+      "num": "Cap. 04",
+      "tag": "As Emoções",
+      "title": "Lágrimas de <em>Felicidade</em>",
+      "desc": "A emoção que escapa nos olhos do noivo ao ver sua amada, ou nas mãos que se unem pela primeira vez. Somos especialistas em capturar o que as palavras não conseguem descrever."
+    },
+    {
+      "num": "Cap. 05",
+      "tag": "O Casal",
+      "title": "Unidos para <em>Sempre</em>",
+      "desc": "O momento do casal a sós, ainda na euforia do dia, com a leveza de quem acaba de viver o maior dia de suas vidas. Retratos cheios de amor genuíno e conexão real."
+    },
+    {
+      "num": "Cap. 06",
+      "tag": "A Celebração",
+      "title": "A Festa que <em>Transborda</em>",
+      "desc": "Dança, risos, abraços e brindis. A recepção é onde a história continua sendo escrita, com cada convidado fazendo parte desse capítulo inesquecível."
+    }
   ],
   "testis": [
-    { "name": "Ana & Pedro",       "date": "Fortaleza, 2024",    "text": "As fotos e o filme ficaram incríveis. Cada imagem conta uma história e nos emociona toda vez que abrimos o álbum." },
-    { "name": "Camila & Lucas",    "date": "Jericoacoara, 2024", "text": "Profissionalismo e sensibilidade únicos. Discretos durante a cerimônia mas capturaram absolutamente tudo." },
-    { "name": "Juliana & Rafael",  "date": "Canindé, 2023",      "text": "O filme é emocionante — assistimos toda vez que queremos reviver o nosso dia. Arte pura." },
-    { "name": "Fernanda & Marcos", "date": "Fortaleza, 2023",    "text": "Desde o planejamento até a entrega, tudo foi perfeito. Um time que realmente se importa com a história de cada casal." }
+    {
+      "name": "Ana & Pedro",
+      "date": "Fortaleza, 2024",
+      "text": "As fotos e o filme ficaram incríveis. Cada imagem conta uma história e nos emociona toda vez que abrimos o álbum."
+    },
+    {
+      "name": "Camila & Lucas",
+      "date": "Sã Luis, 2024",
+      "text": "Profissionalismo e sensibilidade únicos. Discretos durante a cerimônia mas capturaram absolutamente tudo."
+    },
+    {
+      "name": "Juliana & Rafael",
+      "date": "Canindé, 2023",
+      "text": "O filme é emocionante — assistimos toda vez que queremos reviver o nosso dia. Arte pura."
+    },
+    {
+      "name": "Fernanda & Marcos",
+      "date": "Fortaleza, 2023",
+      "text": "Desde o planejamento até a entrega, tudo foi perfeito. Um time que realmente se importa com a história de cada casal."
+    }
   ],
   "videos": [
-    { "url": "", "title": "Vídeo 1", "desc": "", "tag": "" },
-    { "url": "", "title": "Vídeo 2", "desc": "", "tag": "" },
-    { "url": "", "title": "Vídeo 3", "desc": "", "tag": "" },
-    { "url": "", "title": "Vídeo 4", "desc": "", "tag": "" },
-    { "url": "", "title": "Vídeo 5", "desc": "", "tag": "" },
-    { "url": "", "title": "Vídeo 6", "desc": "", "tag": "" }
+    {
+      "url": "",
+      "title": "Vídeo 1",
+      "tag": "",
+      "desc": ""
+    },
+    {
+      "url": "",
+      "title": "Vídeo 2",
+      "tag": "",
+      "desc": ""
+    },
+    {
+      "url": "",
+      "title": "Vídeo 3",
+      "tag": "",
+      "desc": ""
+    },
+    {
+      "url": "",
+      "title": "Vídeo 4",
+      "tag": "",
+      "desc": ""
+    },
+    {
+      "url": "",
+      "title": "Vídeo 5",
+      "tag": "",
+      "desc": ""
+    },
+    {
+      "url": "",
+      "title": "Vídeo 6",
+      "tag": "",
+      "desc": ""
+    }
   ]
 }
