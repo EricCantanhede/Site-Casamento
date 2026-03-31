@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#181412">
+<title>SC Weddings — Filmes & Fotos para Casamentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ━━ TOKENS ━━ */
+:root{
+  --cream:#faf8f4;--ivory:#fff9f2;
+  --gold:#b8966a;--gold-l:#d4b896;--gold-d:#8a6e48;
+  --dark:#181412;--char:#2b2220;--muted:#7a6e68;--rose:#e8d9cc;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;min-width:320px;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+button,input,textarea{font-family:inherit;border-radius:0;-webkit-appearance:none;appearance:none;}
+button{cursor:pointer;}a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--gold-l);}
+.hidden{display:none!important;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* ─ LOADING ─ */
+#loadScreen{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s;}
+#loadScreen.out{opacity:0;pointer-events:none;}
+.ld-logo{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--cream);letter-spacing:2px;}
+.ld-logo span{color:var(--gold);}
+.ld-bar{width:160px;height:2px;background:rgba(255,255,255,.08);}
+.ld-prog{height:100%;background:var(--gold);width:0%;transition:width .4s ease;}
+.ld-txt{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);}
+
+/* ─ NAV ─ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s;}
+#nav.solid{background:rgba(250,248,244,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(184,150,106,.18);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;letter-spacing:1px;color:var(--dark);display:flex;align-items:baseline;}
+.nav-logo .amp{color:var(--gold);font-style:italic;margin:0 1px;}
+.nav-logo .sub{font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-left:8px;align-self:center;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-admin{height:36px;padding:0 16px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-size:10px;font-weight:300;letter-spacing:2px;text-transform:uppercase;transition:background .2s,color .2s;display:inline-flex;align-items:center;}
+.nav-admin:hover,.nav-admin:active{background:var(--gold);color:var(--cream);}
+.ham{width:40px;height:40px;background:none;border:none;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;padding:8px;}
+.ham-l{display:block;height:1px;background:var(--dark);transition:transform .3s,opacity .3s,width .3s;}
+.ham-l:nth-child(1),.ham-l:nth-child(2){width:24px;}.ham-l:nth-child(3){width:16px;}
+.ham.open .ham-l:nth-child(1){transform:translateY(6px) rotate(45deg);width:24px;}
+.ham.open .ham-l:nth-child(2){opacity:0;}
+.ham.open .ham-l:nth-child(3){transform:translateY(-6px) rotate(-45deg);width:24px;}
+.mob-menu{position:fixed;inset:0;z-index:190;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .45s cubic-bezier(.77,0,.175,1);padding:80px 24px;}
+.mob-menu.open{transform:translateX(0);}
+.mob-menu a{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;font-style:italic;color:var(--cream);letter-spacing:1px;transition:color .2s;}
+.mob-menu a:hover,.mob-menu a:active{color:var(--gold-l);}
+.mob-div{width:40px;height:1px;background:rgba(184,150,106,.4);}
+.desk-links{display:none;list-style:none;gap:28px;}
+.desk-links a{font-size:10px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--char);transition:color .25s;}
+.desk-links a:hover{color:var(--gold);}
+@media(min-width:768px){#nav{padding:0 48px;height:72px;}.desk-links{display:flex;}.ham{display:none;}}
+
+/* ─ HERO ─ */
+.hero{height:100svh;min-height:600px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{filter:brightness(.68) saturate(.88);}
+.hero-vig{position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,20,18,.2) 0%,transparent 40%,rgba(24,20,18,.72) 100%);}
+.hero-ct{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 64px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;opacity:0;animation:fadeUp .7s .3s both;}
+.hero-badge-line{width:32px;height:1px;background:var(--gold-l);}
+.hero-badge-text{font-size:10px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,10vw,96px);font-weight:300;line-height:1.02;color:#fff;opacity:0;animation:fadeUp .8s .5s both;}
+.hero-title em{font-style:italic;color:var(--gold-l);}
+.hero-sub{margin-top:16px;font-size:clamp(14px,2.5vw,16px);font-weight:200;line-height:1.8;color:rgba(255,255,255,.72);max-width:480px;opacity:0;animation:fadeUp .8s .7s both;}
+.hero-ctas{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;opacity:0;animation:fadeUp .8s .9s both;}
+.btn-gold{height:50px;padding:0 36px;background:var(--gold);color:var(--cream);font-size:11px;font-weight:300;letter-spacing:2px;text-transform:uppercase;border:none;display:inline-flex;align-items:center;transition:background .25s,transform .2s;}
+.btn-gold:hover{background:var(--gold-d);transform:translateY(-2px);}
+.btn-outline{height:50px;padding:0 32px;border:1px solid rgba(255,255,255,.4);background:transparent;color:rgba(255,255,255,.88);font-size:11px;font-weight:300;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;transition:border-color .25s,color .25s;}
+.btn-outline:hover{border-color:#fff;color:#fff;}
+.hero-scr{position:absolute;bottom:28px;right:22px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 1.2s both;}
+.hero-scr span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;}
+.scr-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:bounce 2s ease-in-out infinite;}
+@media(min-width:768px){.hero-ct{padding:0 80px 80px;}.hero-scr{bottom:44px;right:44px;}}
+
+/* ─ ORNAMENT ─ */
+.orn{display:flex;align-items:center;gap:16px;padding:0 24px;margin:56px 0 0;}
+.orn-line{flex:1;height:1px;background:var(--rose);}
+.orn-icon{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-style:italic;line-height:1;}
+@media(min-width:768px){.orn{padding:0 48px;}}
+
+/* ─ SECTION HEAD ─ */
+.sec-head{text-align:center;padding:56px 24px 44px;}
+.sec-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,54px);font-weight:300;line-height:1.1;color:var(--dark);}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-desc{margin-top:14px;font-size:14px;font-weight:200;line-height:1.85;color:var(--muted);max-width:520px;margin-left:auto;margin-right:auto;}
+@media(min-width:768px){.sec-head{padding:72px 48px 56px;}}
+
+/* ─ CHAPTERS ─ */
+.chapters{padding-bottom:72px;}
+.chapter{display:grid;grid-template-columns:1fr;margin-bottom:6px;overflow:hidden;}
+.ch-img{aspect-ratio:4/5;position:relative;overflow:hidden;}
+.ch-img img{transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .8s;filter:brightness(.88) saturate(.85);}
+.chapter:hover .ch-img img{transform:scale(1.06);filter:brightness(.95) saturate(1);}
+.ch-num{position:absolute;top:16px;left:16px;font-size:10px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.75);background:rgba(24,20,18,.3);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:6px 12px;}
+.ch-text{padding:28px 24px 32px;background:var(--ivory);display:flex;flex-direction:column;gap:8px;}
+.ch-tag{display:inline-flex;align-items:center;gap:8px;}
+.ch-tag-line{width:24px;height:1px;background:var(--gold);flex-shrink:0;}
+.ch-tag-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.ch-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,36px);font-weight:300;line-height:1.12;color:var(--dark);margin-top:4px;}
+.ch-title em{font-style:italic;color:var(--gold);}
+.ch-desc{font-size:14px;font-weight:200;line-height:1.9;color:var(--muted);}
+@media(min-width:700px){.chapter{grid-template-columns:1fr 1fr;min-height:420px;}.ch-img{aspect-ratio:unset;}.ch-text{padding:48px 52px;justify-content:center;}.chapter.rev .ch-img{order:2;}.chapter.rev .ch-text{order:1;}}
+@media(min-width:1024px){.chapter{min-height:500px;}.ch-text{padding:60px 72px;}}
+
+/* ─ QUOTE ─ */
+.fquote{position:relative;overflow:hidden;padding:80px 24px;text-align:center;}
+.fq-bg{position:absolute;inset:0;}.fq-bg img{filter:brightness(.38) saturate(.65);}
+.fq-in{position:relative;z-index:1;}
+.fq-mk{font-family:'Cormorant Garamond',serif;font-size:72px;line-height:.6;color:var(--gold-l);opacity:.45;margin-bottom:12px;}
+.fq-tx{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,38px);font-weight:300;font-style:italic;color:#fff;line-height:1.45;max-width:680px;margin:0 auto;}
+.fq-au{margin-top:24px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);}
+@media(min-width:768px){.fquote{padding:112px 48px;}}
+
+/* ─ VIDEOS ─ */
+#videoSec{background:var(--dark);padding-bottom:72px;}
+#videoSec .sec-title{color:#fff;}#videoSec .sec-eye{color:var(--gold-l);}
+#videoSec .sec-desc{color:rgba(255,255,255,.4);}
+#videoSec .orn-line{background:rgba(184,150,106,.2);}#videoSec .orn-icon{color:var(--gold-l);}
+.vid-grid{display:grid;grid-template-columns:1fr;gap:16px;padding:0 20px;}
+.vid-card{background:#111;border:1px solid rgba(184,150,106,.12);overflow:hidden;}
+.vid-thumb{position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;cursor:pointer;}
+.vid-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .6s;filter:brightness(.78) saturate(.78);}
+.vid-card:hover .vid-thumb img{transform:scale(1.04);filter:brightness(.9) saturate(.9);}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(184,150,106,.88);display:flex;align-items:center;justify-content:center;pointer-events:none;transition:transform .25s,background .25s;}
+.vid-card:hover .play-btn{transform:translate(-50%,-50%) scale(1.12);background:var(--gold);}
+.play-arr{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:19px solid #fff;margin-left:4px;}
+.vid-info{padding:16px 20px 20px;}
+.vid-ttl{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#fff;margin-bottom:6px;}
+.vid-dsc{font-size:13px;font-weight:200;color:rgba(255,255,255,.42);line-height:1.7;}
+.vid-tag{display:inline-flex;align-items:center;gap:6px;margin-top:10px;}
+.vid-tag span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+@media(min-width:600px){.vid-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:900px){.vid-grid{grid-template-columns:repeat(3,1fr);padding:0 48px;}}
+.vlb{position:fixed;inset:0;z-index:600;background:rgba(24,20,18,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
+.vlb.on{opacity:1;pointer-events:all;}
+.vlb-in{width:100%;max-width:900px;position:relative;}
+.vlb-ratio{position:relative;width:100%;padding-bottom:56.25%;}
+.vlb-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.vlb-close{position:absolute;top:-40px;right:0;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:none;height:32px;transition:color .2s;}
+.vlb-close:hover{color:#fff;}
+
+/* ─ MINI GRID ─ */
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
+.mini-item{aspect-ratio:1;overflow:hidden;position:relative;}
+.mini-item img{transition:transform .7s ease,filter .7s;filter:brightness(.9) saturate(.85);}
+.mini-item:hover img{transform:scale(1.08);filter:brightness(1) saturate(1);}
+.mini-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(24,20,18,.65) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:14px;}
+.mini-item:hover .mini-ov{opacity:1;}
+.mini-lbl{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#fff;}
+@media(min-width:600px){.mini-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:900px){.mini-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* ─ STATS ─ */
+.stats{background:var(--dark);padding:56px 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:40px;}
+.stat{text-align:center;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-l);line-height:1;}
+.stat-n sup{font-size:18px;vertical-align:super;}
+.stat-l{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:8px;}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,1fr);padding:72px 48px;}}
+
+/* ─ ABOUT ─ */
+.about{display:grid;grid-template-columns:1fr;}
+.about-img{aspect-ratio:4/5;overflow:hidden;}
+.about-img img{filter:brightness(.9) saturate(.85);transition:transform .9s ease;}
+.about:hover .about-img img{transform:scale(1.04);}
+.about-tx{padding:48px 24px 56px;background:var(--ivory);display:flex;flex-direction:column;justify-content:center;}
+.about-tx .sec-eye,.about-tx .sec-title{text-align:left;}
+.about-tx .sec-title{margin-bottom:18px;}
+.about-body{font-size:14px;font-weight:200;line-height:1.95;color:var(--muted);margin-bottom:24px;}
+.about-sig{font-family:'Cormorant Garamond',serif;font-size:30px;font-style:italic;color:var(--gold);}
+@media(min-width:768px){.about{grid-template-columns:1fr 1fr;}.about-img{aspect-ratio:unset;min-height:560px;}.about-tx{padding:64px 72px;}}
+
+/* ─ TESTIS ─ */
+.testis{padding:64px 24px 72px;background:var(--cream);}
+.testi-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;}
+.testi-scroll::-webkit-scrollbar{display:none;}
+.testi-card{flex:0 0 min(85vw,360px);border:1px solid rgba(184,150,106,.2);background:var(--ivory);padding:32px 28px;scroll-snap-align:start;transition:box-shadow .3s;}
+.testi-card:hover{box-shadow:0 16px 48px rgba(184,150,106,.12);}
+.tq{font-family:'Cormorant Garamond',serif;font-size:52px;line-height:.8;color:var(--gold-l);opacity:.3;margin-bottom:4px;}
+.tstars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:10px;}
+.ttext{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;line-height:1.7;color:var(--char);margin-bottom:22px;}
+.tname{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.tdate{font-size:11px;color:var(--muted);margin-top:4px;}
+.tdots{display:flex;justify-content:center;gap:8px;margin-top:22px;}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--rose);border:none;cursor:pointer;transition:background .3s,transform .3s;}
+.tdot.act{background:var(--gold);transform:scale(1.3);}
+
+/* ─ CTA ─ */
+.cta-wrap{position:relative;overflow:hidden;padding:80px 24px;text-align:center;}
+.cta-bg{position:absolute;inset:0;}.cta-bg img{filter:brightness(.3) saturate(.55);}
+.cta-in{position:relative;z-index:1;}
+.cta-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);margin-bottom:14px;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,7vw,60px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:36px;}
+.cta-title em{font-style:italic;color:var(--gold-l);}
+.cta-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+.btn-wa{height:52px;padding:0 32px;background:#25d366;color:#fff;font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;border:none;display:inline-flex;align-items:center;gap:10px;transition:background .25s,transform .2s;}
+.btn-wa:hover{background:#1da851;transform:translateY(-2px);}
+.btn-ig{height:52px;padding:0 28px;border:1px solid rgba(255,255,255,.4);background:transparent;color:rgba(255,255,255,.88);font-size:11px;font-weight:300;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:border-color .25s,color .25s;}
+.btn-ig:hover{border-color:#fff;color:#fff;}
+@media(min-width:768px){.cta-wrap{padding:112px 48px;}}
+
+/* ─ FOOTER ─ */
+footer{background:var(--dark);padding:48px 24px 36px;}
+.footer-in{display:flex;flex-direction:column;gap:28px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:1px;color:var(--cream);}
+.footer-logo .amp{color:var(--gold);font-style:italic;}
+.ftag{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-top:4px;}
+.flinks{display:flex;flex-wrap:wrap;gap:18px;}
+.flinks a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.32);transition:color .25s;}
+.flinks a:hover{color:var(--gold-l);}
+.fcopy{font-size:10px;color:rgba(255,255,255,.16);letter-spacing:1px;border-top:1px solid rgba(255,255,255,.06);padding-top:22px;margin-top:6px;}
+@media(min-width:768px){footer{padding:56px 48px 40px;}.footer-in{flex-direction:row;justify-content:space-between;align-items:flex-end;}}
+
+/* ─ FLOAT WA ─ */
+.float-wa{position:fixed;bottom:22px;right:20px;z-index:150;width:56px;height:56px;border-radius:50%;background:#25d366;border:none;box-shadow:0 6px 22px rgba(37,211,102,.42);display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1;transition:transform .2s;}
+.float-wa:hover,.float-wa:active{transform:scale(1.08);}
+
+/* ━━━━━━ LOGIN MODAL ━━━━━━ */
+.overlay{position:fixed;inset:0;z-index:900;background:rgba(24,20,18,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;}
+.overlay.on{opacity:1;pointer-events:all;}
+.modal{background:var(--cream);width:100%;max-width:460px;padding:48px 28px 40px;transform:translateY(60px);transition:transform .4s cubic-bezier(.23,1,.32,1);position:relative;}
+.overlay.on .modal{transform:translateY(0);}
+.modal-x{position:absolute;top:16px;right:20px;width:32px;height:32px;background:none;border:none;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;}
+.modal-x:hover{color:var(--dark);}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;margin-bottom:6px;}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:32px;}
+.f-grp{margin-bottom:18px;}
+.f-lbl{display:block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.f-inp{width:100%;height:46px;padding:0 14px;border:1px solid rgba(184,150,106,.28);background:var(--ivory);color:var(--dark);font-size:15px;font-weight:200;outline:none;transition:border-color .25s;}
+.f-inp:focus{border-color:var(--gold);}
+.f-err{font-size:12px;color:#c0614a;margin-top:6px;display:none;}
+.btn-dark{width:100%;height:48px;background:var(--dark);color:var(--cream);font-size:11px;font-weight:300;letter-spacing:3px;text-transform:uppercase;border:none;transition:background .25s;}
+.btn-dark:hover{background:var(--gold);}
+@media(min-width:600px){.overlay{align-items:center;}.modal{padding:56px 48px 48px;}}
+
+/* ━━━━━━ ADMIN ━━━━━━ */
+#admin{position:fixed;inset:0;z-index:800;background:var(--ivory);overflow-y:auto;transform:translateX(100%);transition:transform .5s cubic-bezier(.77,0,.175,1);}
+#admin.on{transform:translateX(0);}
+.a-hd{background:var(--dark);height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.a-hd-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);letter-spacing:1px;}
+.a-hd-logo span{color:var(--gold);}
+.a-hd-close{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);background:none;border:none;height:40px;padding:0 4px;}
+.a-hd-close:hover{color:var(--gold-l);}
+@media(min-width:768px){.a-hd{padding:0 48px;}}
+.a-tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:var(--cream);border-bottom:1px solid var(--rose);position:sticky;top:56px;z-index:9;}
+.a-tabs::-webkit-scrollbar{display:none;}
+.a-tab{flex:0 0 auto;padding:0 18px;height:44px;font-size:11px;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;}
+.a-tab.act{color:var(--gold);border-bottom-color:var(--gold);}
+.a-pnl{display:none;padding:32px 20px 80px;}
+.a-pnl.act{display:block;}
+@media(min-width:768px){.a-pnl{padding:40px 48px 80px;}.a-tab{padding:0 24px;}}
+.a-ttl{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;margin-bottom:4px;color:var(--dark);}
+.a-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.65;}
+.a-div{border:none;border-top:1px solid var(--rose);margin:36px 0;}
+
+/* download / export box */
+.export-box{background:var(--dark);padding:20px 24px;margin-bottom:28px;display:flex;flex-direction:column;gap:14px;}
+.export-box p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;}
+.export-box strong{color:var(--gold-l);}
+.export-box code{font-family:monospace;font-size:12px;background:rgba(255,255,255,.06);padding:2px 6px;}
+.btn-export{height:44px;padding:0 28px;background:var(--gold);color:var(--cream);font-size:11px;font-weight:300;letter-spacing:2px;text-transform:uppercase;border:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s;align-self:flex-start;}
+.btn-export:hover{background:var(--gold-d);}
+.unsaved-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;background:rgba(255,165,0,.15);border:1px solid rgba(255,165,0,.4);color:#c8860a;}
+.saved-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);color:#1a8a3a;}
+
+/* Toggle */
+.tgl-row{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:var(--cream);border:1px solid var(--rose);margin-bottom:10px;}
+.tgl-lbl{display:flex;flex-direction:column;gap:3px;}
+.tgl-lbl-t{font-size:14px;font-weight:400;color:var(--dark);}
+.tgl-lbl-s{font-size:12px;color:var(--muted);}
+.sw{position:relative;width:50px;height:28px;flex-shrink:0;}
+.sw input{opacity:0;width:0;height:0;position:absolute;}
+.sw-tr{position:absolute;inset:0;border-radius:14px;background:var(--rose);transition:background .25s;cursor:pointer;}
+.sw input:checked+.sw-tr{background:var(--gold);}
+.sw-th{position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .25s;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.sw input:checked~.sw-th{transform:translateX(22px);}
+
+/* Image slot grid */
+.img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:28px;}
+@media(min-width:600px){.img-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:900px){.img-grid{grid-template-columns:repeat(4,1fr);}}
+.img-slot{display:flex;flex-direction:column;gap:8px;}
+.img-slot-preview{aspect-ratio:4/5;overflow:hidden;background:var(--rose);position:relative;}
+.img-slot-preview img{width:100%;height:100%;object-fit:cover;}
+.img-slot-preview.wide{aspect-ratio:16/9;}
+.img-slot-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.img-slot-input{width:100%;height:36px;padding:0 10px;border:1px solid rgba(184,150,106,.25);background:var(--cream);color:var(--dark);font-size:12px;font-weight:200;outline:none;font-family:monospace;transition:border-color .25s;}
+.img-slot-input:focus{border-color:var(--gold);}
+.img-slot-input.ok{border-color:var(--gold);}
+.img-slot-input.err{border-color:#c0614a;}
+
+/* Forms */
+.a-g2{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:600px){.a-g2{grid-template-columns:1fr 1fr;}}
+.a-fg{margin-bottom:0;}
+.a-lbl{display:block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.a-inp{width:100%;height:42px;padding:0 12px;border:1px solid rgba(184,150,106,.25);background:var(--cream);color:var(--dark);font-size:14px;font-weight:200;outline:none;transition:border-color .25s;}
+.a-inp:focus{border-color:var(--gold);}
+textarea.a-inp{height:auto;padding:10px 12px;resize:vertical;min-height:80px;}
+.a-save{height:46px;padding:0 40px;background:var(--dark);color:var(--cream);font-size:11px;font-weight:300;letter-spacing:3px;text-transform:uppercase;border:none;transition:background .25s;display:inline-flex;align-items:center;gap:8px;margin-top:24px;}
+.a-save:hover{background:var(--gold);}
+.a-ok{display:none;padding:12px 16px;margin-top:12px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);color:#1a8a3a;font-size:13px;}
+
+/* Accordion */
+.acc{border:1px solid var(--rose);margin-bottom:10px;background:var(--cream);}
+.acc-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;}
+.acc-nm{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--dark);}
+.acc-tg{font-size:12px;color:var(--gold);background:none;border:none;transition:transform .3s;line-height:1;cursor:pointer;}
+.acc-tg.open{transform:rotate(180deg);}
+.acc-bd{display:none;padding:4px 18px 18px;}
+.acc-bd.open{display:block;}
+.vid-prev{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:10px;background:var(--dark);}
+.vid-hint{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6;}
+
+/* Keyframes */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loadScreen"><div class="ld-logo">SC<span>&nbsp;</span>Weddings</div><div class="ld-bar"><div class="ld-prog" id="ldProg"></div></div><div class="ld-txt" id="ldTxt">Carregando...</div></div>
+
+<!-- FLOAT WA -->
+<button class="float-wa" id="floatWa">💬</button>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#galeria" onclick="closeMob()">Galeria</a><div class="mob-div"></div>
+  <a href="#filmes" id="mobVidLink" onclick="closeMob()">Filmes</a><div class="mob-div"></div>
+  <a href="#sobre" onclick="closeMob()">Sobre</a><div class="mob-div"></div>
+  <a href="#depoimentos" onclick="closeMob()">Depoimentos</a><div class="mob-div"></div>
+  <a href="#contato" onclick="closeMob()">Contato</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">SC<span class="amp">&nbsp;</span>Weddings<span class="sub">Production</span></a>
+  <div class="nav-right">
+    <ul class="desk-links">
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#filmes" id="deskVidLink">Filmes</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="nav-admin" id="openLoginBtn">Admin</button>
+    <button class="ham" id="ham"><span class="ham-l"></span><span class="ham-l"></span><span class="ham-l"></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img id="heroImg" src="resize/SMM_1654.jpg" alt="SC Weddings"></div>
+  <div class="hero-vig"></div>
+  <div class="hero-ct">
+    <div class="hero-badge"><div class="hero-badge-line"></div><span class="hero-badge-text" id="heroBadge">Filmes & Fotos para Casamentos · Ceará</span></div>
+    <h1 class="hero-title" id="heroTitle">Momentos que ficam para <em>sempre</em></h1>
+    <p class="hero-sub" id="heroSub">Capturamos e filmamos a emoção real do seu grande dia com luz, arte e sentimento que atravessam o tempo.</p>
+    <div class="hero-ctas">
+      <button class="btn-gold" onclick="scrollS('galeria')">Ver Portfólio</button>
+      <button class="btn-outline" onclick="scrollS('contato')">Agendar Sessão</button>
+    </div>
+  </div>
+  <div class="hero-scr"><div class="scr-dot"></div><span>scroll</span></div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><div class="orn-icon">♡</div><div class="orn-line"></div></div>
+
+<div class="sec-head reveal" id="galeria">
+  <p class="sec-eye" id="gallEye">A História de Amor em Imagens</p>
+  <h2 class="sec-title" id="gallTitle">Cada foto conta um <em>capítulo único</em></h2>
+  <p class="sec-desc" id="gallDesc">Do primeiro olhar ao "sim" — preservamos cada instante com a delicadeza que ele merece.</p>
+</div>
+
+<!-- CHAPTERS -->
+<section class="chapters">
+  <div class="chapter reveal"><div class="ch-img"><img id="chImg0" src="resize/SMM_1676.jpg" alt=""><div class="ch-num" id="chNum0">Cap. 01</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag0">O Começo</span></div><h3 class="ch-title" id="chTitle0">A Chegada da <em>Noiva</em></h3><p class="ch-desc" id="chDesc0">O momento em que as portas se abrem e o tempo parece pausar. O véu, o vestido, o nervosismo misturado com alegria — tudo isso merece ser eternizado com a delicadeza que o instante pede.</p></div></div>
+  <div class="chapter rev reveal"><div class="ch-img"><img id="chImg1" src="resize/By@ericcorrea00-8036.jpg" alt=""><div class="ch-num" id="chNum1">Cap. 02</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag1">Os Detalhes</span></div><h3 class="ch-title" id="chTitle1">Cada <em>Detalhe</em> Importa</h3><p class="ch-desc" id="chDesc1">As flores cuidadosamente escolhidas, o buquê que tremeu nas mãos, a aliança sobre o véu. São os pequenos detalhes que transformam memórias em obras de arte.</p></div></div>
+  <div class="chapter reveal"><div class="ch-img"><img id="chImg2" src="resize/_RNN5463.jpg" alt=""><div class="ch-num" id="chNum2">Cap. 03</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag2">A Cerimônia</span></div><h3 class="ch-title" id="chTitle2">O <em>Sim</em> que Muda Tudo</h3><p class="ch-desc" id="chDesc2">Diante de todos os que amam, duas almas escolhem uma à outra. Nossa lente captura a emoção pura desse sim eterno.</p></div></div>
+  <div class="chapter rev reveal"><div class="ch-img"><img id="chImg3" src="resize/By@ericcorrea00-7990.jpg" alt=""><div class="ch-num" id="chNum3">Cap. 04</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag3">As Emoções</span></div><h3 class="ch-title" id="chTitle3">Lágrimas de <em>Felicidade</em></h3><p class="ch-desc" id="chDesc3">A emoção que escapa nos olhos do noivo ao ver sua amada, ou nas mãos que se unem pela primeira vez. Somos especialistas em capturar o que as palavras não conseguem descrever.</p></div></div>
+  <div class="chapter reveal"><div class="ch-img"><img id="chImg4" src="resize/By@ericcorrea00-7697-2.jpg" alt=""><div class="ch-num" id="chNum4">Cap. 05</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag4">O Casal</span></div><h3 class="ch-title" id="chTitle4">Unidos para <em>Sempre</em></h3><p class="ch-desc" id="chDesc4">O momento do casal a sós, ainda na euforia do dia, com a leveza de quem acaba de viver o maior dia de suas vidas. Retratos cheios de amor genuíno e conexão real.</p></div></div>
+  <div class="chapter rev reveal"><div class="ch-img"><img id="chImg5" src="resize/SMM_1951.jpg" alt=""><div class="ch-num" id="chNum5">Cap. 06</div></div><div class="ch-text"><div class="ch-tag"><div class="ch-tag-line"></div><span class="ch-tag-lbl" id="chTag5">A Celebração</span></div><h3 class="ch-title" id="chTitle5">A Festa que <em>Transborda</em></h3><p class="ch-desc" id="chDesc5">Dança, risos, abraços e brindis. A recepção é onde a história continua sendo escrita, com cada convidado fazendo parte desse capítulo inesquecível.</p></div></div>
+</section>
+
+<!-- QUOTE -->
+<div class="fquote reveal">
+  <div class="fq-bg"><img id="quoteImg" src="resize/FLORES2.png" alt=""></div>
+  <div class="fq-in"><div class="fq-mk">"</div><p class="fq-tx" id="quoteText">Um casamento é um dia. Um bom casamento é uma vida inteira. Nossas produções guardam os dois.</p><p class="fq-au" id="quoteAuthor">— SC Weddings Production</p></div>
+</div>
+
+<!-- VIDEOS -->
+<section id="videoSec" class="hidden">
+  <div class="orn" style="padding-top:64px;margin-top:0"><div class="orn-line" style="background:rgba(184,150,106,.2)"></div><div class="orn-icon" style="color:var(--gold-l)">▶</div><div class="orn-line" style="background:rgba(184,150,106,.2)"></div></div>
+  <div class="sec-head reveal" id="filmes"><p class="sec-eye" id="vidEye">Nossos Filmes</p><h2 class="sec-title" id="vidTitle">Cinema para o seu <em>grande dia</em></h2><p class="sec-desc" id="vidDesc">Filmes de casamento que emocionam para sempre — com direção de arte, trilha e narrativa únicas.</p></div>
+  <div class="vid-grid" id="vidGrid"></div>
+  <div style="height:72px"></div>
+</section>
+<div class="vlb" id="vlb"><div class="vlb-in"><button class="vlb-close" id="vlbClose">✕ fechar</button><div class="vlb-ratio"><iframe id="vlbFrame" src="" allowfullscreen allow="autoplay;encrypted-media"></iframe></div></div></div>
+
+<!-- MINI GRID -->
+<section id="miniSec">
+  <div class="orn" style="margin-top:64px"><div class="orn-line"></div><div class="orn-icon">✦</div><div class="orn-line"></div></div>
+  <div class="sec-head reveal"><p class="sec-eye">Momentos Especiais</p><h2 class="sec-title">Mais <em>memórias</em></h2></div>
+  <div class="mini-grid reveal">
+    <div class="mini-item"><img id="mini1" src="resize/IMG_8855.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL1">Detalhes</span></div></div>
+    <div class="mini-item"><img id="mini2" src="resize/IMG_8857.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL2">Cerimônia</span></div></div>
+    <div class="mini-item"><img id="mini3" src="resize/SMM_1665.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL3">Casal</span></div></div>
+    <div class="mini-item"><img id="mini4" src="resize/By@ericcorrea00-7700.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL4">Família</span></div></div>
+    <div class="mini-item"><img id="mini5" src="resize/By@ericcorrea00-7909.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL5">Flores</span></div></div>
+    <div class="mini-item"><img id="mini6" src="resize/close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL6">Alianças</span></div></div>
+    <div class="mini-item"><img id="mini7" src="resize/FLORES2.png" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL7">Celebração</span></div></div>
+    <div class="mini-item"><img id="mini8" src="resize/SMM_1951.jpg" alt=""><div class="mini-ov"><span class="mini-lbl" id="miniL8">Festa</span></div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal"><div class="stat"><div class="stat-n" id="sN1">0</div><div class="stat-l" id="sL1">Casamentos Realizados</div></div><div class="stat"><div class="stat-n" id="sN2">0</div><div class="stat-l" id="sL2">Anos de Experiência</div></div><div class="stat"><div class="stat-n" id="sN3">0<sup>k</sup></div><div class="stat-l" id="sL3">Fotos Entregues</div></div><div class="stat"><div class="stat-n" id="sN4">0</div><div class="stat-l" id="sL4">Estados Atendidos</div></div></div>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-img reveal"><img id="aboutImg" src="resize/SMM_1654.jpg" alt="SC Weddings"></div>
+  <div class="about-tx reveal" style="transition-delay:120ms">
+    <p class="sec-eye" id="aboutEye">Sobre Nós</p>
+    <h2 class="sec-title" id="aboutTitle">A arte de eternizar <em>amor</em></h2>
+    <p class="about-body" id="aboutBody">Somos uma produtora especializada em filmes e fotografias para casamentos. Desde 2015 percorremos o Brasil capturando cerimônias com um olhar autêntico — valorizando cada detalhe, cada olhar, cada lágrima de felicidade.<br><br>Nossa abordagem é discreta e próxima: queremos que você esqueça a câmera e viva intensamente o momento.</p>
+    <div class="about-sig" id="aboutSig">SC Weddings</div>
+  </div>
+</section>
+
+<!-- TESTIS -->
+<section class="testis reveal" id="depoimentos">
+  <div class="sec-head" style="padding-top:0"><p class="sec-eye" id="testiEye">Depoimentos</p><h2 class="sec-title" id="testiTitle">O que os casais <em>dizem</em></h2></div>
+  <div class="testi-scroll" id="testiScroll">
+    <div class="testi-card"><div class="tq">"</div><div class="tstars">★★★★★</div><p class="ttext" id="tt0">As fotos e o filme ficaram incríveis. Cada imagem conta uma história e nos emociona toda vez que abrimos o álbum.</p><div class="tname" id="tn0">Ana & Pedro</div><div class="tdate" id="td0">Fortaleza, 2024</div></div>
+    <div class="testi-card"><div class="tq">"</div><div class="tstars">★★★★★</div><p class="ttext" id="tt1">Profissionalismo e sensibilidade únicos. Discretos durante a cerimônia mas capturaram absolutamente tudo.</p><div class="tname" id="tn1">Camila & Lucas</div><div class="tdate" id="td1">Jericoacoara, 2024</div></div>
+    <div class="testi-card"><div class="tq">"</div><div class="tstars">★★★★★</div><p class="ttext" id="tt2">O filme é emocionante — assistimos toda vez que queremos reviver o nosso dia. Arte pura.</p><div class="tname" id="tn2">Juliana & Rafael</div><div class="tdate" id="td2">Canindé, 2023</div></div>
+    <div class="testi-card"><div class="tq">"</div><div class="tstars">★★★★★</div><p class="ttext" id="tt3">Desde o planejamento até a entrega, tudo foi perfeito. Um time que realmente se importa com a história de cada casal.</p><div class="tname" id="tn3">Fernanda & Marcos</div><div class="tdate" id="td3">Fortaleza, 2023</div></div>
+  </div>
+  <div class="tdots"><button class="tdot act" onclick="scrollTesti(0)"></button><button class="tdot" onclick="scrollTesti(1)"></button><button class="tdot" onclick="scrollTesti(2)"></button><button class="tdot" onclick="scrollTesti(3)"></button></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap reveal" id="contato">
+  <div class="cta-bg"><img id="ctaImg" src="resize/FLORES2.png" alt=""></div>
+  <div class="cta-in">
+    <p class="cta-eye" id="ctaEye">Reserve sua data</p>
+    <h2 class="cta-title" id="ctaTitle">Vamos contar a história<br>do seu <em>grande dia?</em></h2>
+    <div class="cta-btns"><button class="btn-wa" id="waBtn">💬 Chamar no WhatsApp</button><button class="btn-ig" id="igBtn">📸 Ver Instagram</button></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-in">
+    <div><div class="footer-logo">SC<span class="amp">&nbsp;</span>Weddings</div><div class="ftag" id="footerTag">Produtora de Filmes & Fotos para Casamentos · Ceará</div></div>
+    <div><div class="flinks"><a href="#" id="fInsta">Instagram</a><a href="#" id="fFace">Facebook</a><a href="#" id="fWa">WhatsApp</a></div><div class="fcopy" id="footerCopy">© 2025 SC Weddings Production · Todos os direitos reservados</div></div>
+  </div>
+</footer>
+
+<!-- LOGIN -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <button class="modal-x" id="closeLoginBtn">✕</button>
+    <h2 class="modal-title">Área Admin</h2>
+    <p class="modal-sub">Entre com suas credenciais para gerenciar o site.</p>
+    <div class="f-grp"><label class="f-lbl">Usuário</label><input class="f-inp" type="text" id="loginUser" placeholder="admin" autocomplete="username"></div>
+    <div class="f-grp"><label class="f-lbl">Senha</label><input class="f-inp" type="password" id="loginPass" placeholder="••••••" autocomplete="current-password"><p class="f-err" id="loginErr">Usuário ou senha incorretos.</p></div>
+    <button class="btn-dark" id="loginBtn">Entrar →</button>
+  </div>
+</div>
+
+<!-- ═══════ ADMIN ═══════ -->
+<div id="admin">
+  <div class="a-hd"><div class="a-hd-logo">SC<span>&nbsp;</span>Weddings · <em style="font-style:italic;font-weight:200;font-size:14px">Admin</em></div><button class="a-hd-close" id="closeAdminBtn">← Fechar</button></div>
+  <div class="a-tabs">
+    <button class="a-tab act" data-tab="tp-exp">💾 Exportar</button>
+    <button class="a-tab" data-tab="tp-sec">👁️ Seções</button>
+    <button class="a-tab" data-tab="tp-img">📸 Imagens</button>
+    <button class="a-tab" data-tab="tp-vid">🎬 Vídeos</button>
+    <button class="a-tab" data-tab="tp-txt">✏️ Textos</button>
+    <button class="a-tab" data-tab="tp-tst">💬 Depoimentos</button>
+    <button class="a-tab" data-tab="tp-num">📊 Números</button>
+    <button class="a-tab" data-tab="tp-ctt">📞 Contatos</button>
+    <button class="a-tab" data-tab="tp-pwd">🔒 Senha</button>
+  </div>
+
+  <!-- ── EXPORTAR ── -->
+  <div class="a-pnl act" id="tp-exp">
+    <h2 class="a-ttl">💾 Salvar Alterações</h2>
+    <p class="a-sub">Edite qualquer seção, depois clique em <strong>Baixar site.json</strong>. Coloque esse arquivo na pasta <code>data/</code> do repositório e faça commit — as alterações ficam visíveis para todos os visitantes.</p>
+
+    <div class="export-box">
+      <p><strong>Fluxo de trabalho:</strong><br>
+      1. Edite textos / imagens / vídeos nas abas acima<br>
+      2. Clique em <strong>Baixar data/site.json</strong><br>
+      3. Substitua o arquivo <code>data/site.json</code> no repositório GitHub<br>
+      4. Faça commit → o site atualiza para todos
+      </p>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <button class="btn-export" id="btnExport">⬇ Baixar data/site.json</button>
+        <span id="exportStatus"></span>
+      </div>
+    </div>
+
+    <div class="a-div"></div>
+    <h2 class="a-ttl">📁 Adicionar Novas Fotos</h2>
+    <p class="a-sub">Para trocar uma foto, adicione o arquivo na pasta <code>resize/</code> do repositório, depois vá na aba <strong>📸 Imagens</strong> e troque o nome do arquivo. O arquivo deve estar em <code>resize/</code>.</p>
+    <div style="background:var(--cream);border:1px solid var(--rose);padding:18px 20px">
+      <p style="font-size:13px;color:var(--char);line-height:1.8">
+        📂 Pasta <code>resize/</code> — arquivos atuais:<br>
+        <span id="fileListPreview" style="font-family:monospace;font-size:11px;color:var(--muted);display:block;margin-top:8px;line-height:2"></span>
+      </p>
+    </div>
+
+    <div class="a-div"></div>
+    <h2 class="a-ttl">🔒 Senha de Acesso</h2>
+    <p class="a-sub">A senha fica salva apenas neste navegador. Senha padrão: <strong>admin123</strong>.</p>
+    <div class="a-g2" style="max-width:480px">
+      <div class="a-fg"><label class="a-lbl">Nova Senha</label><input class="a-inp" type="password" id="newP" placeholder="••••••"></div>
+      <div class="a-fg"><label class="a-lbl">Confirmar</label><input class="a-inp" type="password" id="confP" placeholder="••••••"></div>
+    </div>
+    <button class="a-save" id="btnPwd" style="margin-top:16px">Atualizar Senha →</button>
+    <div class="a-ok" id="pwdOk">✓ Senha atualizada neste navegador!</div>
+  </div>
+
+  <!-- ── SEÇÕES ── -->
+  <div class="a-pnl" id="tp-sec">
+    <h2 class="a-ttl">👁️ Seções</h2>
+    <p class="a-sub">Ative ou oculte seções. Após alterar, vá em <strong>💾 Exportar</strong> e baixe o JSON para publicar.</p>
+    <div class="tgl-row"><div class="tgl-lbl"><span class="tgl-lbl-t">🎬 Catálogo de Vídeos</span><span class="tgl-lbl-s">Exibe a seção "Nossos Filmes"</span></div><label class="sw"><input type="checkbox" id="togVideo"><div class="sw-tr"></div><div class="sw-th"></div></label></div>
+    <div class="tgl-row"><div class="tgl-lbl"><span class="tgl-lbl-t">🖼️ Mais Memórias</span><span class="tgl-lbl-s">Exibe o grid de 8 fotos extras</span></div><label class="sw"><input type="checkbox" id="togMini" checked><div class="sw-tr"></div><div class="sw-th"></div></label></div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── IMAGENS ── -->
+  <div class="a-pnl" id="tp-img">
+    <h2 class="a-ttl">📸 Imagens</h2>
+    <p class="a-sub">Digite o nome do arquivo (deve estar na pasta <code>resize/</code>). A prévia atualiza em tempo real. Após alterar, baixe o JSON em <strong>💾 Exportar</strong>.</p>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:16px;color:var(--muted)">Foto Principal (Hero)</h3>
+    <div class="img-grid" style="grid-template-columns:minmax(0,200px);max-width:200px">
+      <div class="img-slot">
+        <div class="img-slot-preview"><img id="prevHero" src="resize/SMM_1654.jpg" alt=""></div>
+        <div class="img-slot-lbl">heroImg</div>
+        <input class="img-slot-input" id="inpHero" value="resize/SMM_1654.jpg" oninput="previewImg(this,'prevHero','heroImg')" onchange="markChanged()">
+      </div>
+    </div>
+
+    <div class="a-div"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:16px;color:var(--muted)">Capítulos</h3>
+    <div class="img-grid">
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh0" src="resize/SMM_1676.jpg" alt=""></div><div class="img-slot-lbl">Cap. 01</div><input class="img-slot-input" id="inpCh0" value="resize/SMM_1676.jpg" oninput="previewImg(this,'prevCh0','chImg0')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh1" src="resize/By@ericcorrea00-8036.jpg" alt=""></div><div class="img-slot-lbl">Cap. 02</div><input class="img-slot-input" id="inpCh1" value="resize/By@ericcorrea00-8036.jpg" oninput="previewImg(this,'prevCh1','chImg1')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh2" src="resize/_RNN5463.jpg" alt=""></div><div class="img-slot-lbl">Cap. 03</div><input class="img-slot-input" id="inpCh2" value="resize/_RNN5463.jpg" oninput="previewImg(this,'prevCh2','chImg2')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh3" src="resize/By@ericcorrea00-7990.jpg" alt=""></div><div class="img-slot-lbl">Cap. 04</div><input class="img-slot-input" id="inpCh3" value="resize/By@ericcorrea00-7990.jpg" oninput="previewImg(this,'prevCh3','chImg3')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh4" src="resize/By@ericcorrea00-7697-2.jpg" alt=""></div><div class="img-slot-lbl">Cap. 05</div><input class="img-slot-input" id="inpCh4" value="resize/By@ericcorrea00-7697-2.jpg" oninput="previewImg(this,'prevCh4','chImg4')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCh5" src="resize/SMM_1951.jpg" alt=""></div><div class="img-slot-lbl">Cap. 06</div><input class="img-slot-input" id="inpCh5" value="resize/SMM_1951.jpg" oninput="previewImg(this,'prevCh5','chImg5')" onchange="markChanged()"></div>
+    </div>
+
+    <div class="a-div"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:16px;color:var(--muted)">Fotos Extras</h3>
+    <div class="img-grid">
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM1" src="resize/IMG_8855.jpg" alt=""></div><div class="img-slot-lbl">Extra 1</div><input class="img-slot-input" id="inpM1" value="resize/IMG_8855.jpg" oninput="previewImg(this,'prevM1','mini1')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM2" src="resize/IMG_8857.jpg" alt=""></div><div class="img-slot-lbl">Extra 2</div><input class="img-slot-input" id="inpM2" value="resize/IMG_8857.jpg" oninput="previewImg(this,'prevM2','mini2')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM3" src="resize/SMM_1665.jpg" alt=""></div><div class="img-slot-lbl">Extra 3</div><input class="img-slot-input" id="inpM3" value="resize/SMM_1665.jpg" oninput="previewImg(this,'prevM3','mini3')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM4" src="resize/By@ericcorrea00-7700.jpg" alt=""></div><div class="img-slot-lbl">Extra 4</div><input class="img-slot-input" id="inpM4" value="resize/By@ericcorrea00-7700.jpg" oninput="previewImg(this,'prevM4','mini4')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM5" src="resize/By@ericcorrea00-7909.jpg" alt=""></div><div class="img-slot-lbl">Extra 5</div><input class="img-slot-input" id="inpM5" value="resize/By@ericcorrea00-7909.jpg" oninput="previewImg(this,'prevM5','mini5')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM6" src="resize/close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg" alt=""></div><div class="img-slot-lbl">Extra 6</div><input class="img-slot-input" id="inpM6" value="resize/close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg" oninput="previewImg(this,'prevM6','mini6')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM7" src="resize/FLORES2.png" alt=""></div><div class="img-slot-lbl">Extra 7</div><input class="img-slot-input" id="inpM7" value="resize/FLORES2.png" oninput="previewImg(this,'prevM7','mini7')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevM8" src="resize/SMM_1951.jpg" alt=""></div><div class="img-slot-lbl">Extra 8</div><input class="img-slot-input" id="inpM8" value="resize/SMM_1951.jpg" oninput="previewImg(this,'prevM8','mini8')" onchange="markChanged()"></div>
+    </div>
+
+    <div class="a-div"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:16px;color:var(--muted)">Fotos de Fundo</h3>
+    <div class="img-grid" style="grid-template-columns:repeat(3,1fr);max-width:560px">
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevAbout" src="resize/SMM_1654.jpg" alt=""></div><div class="img-slot-lbl">Sobre</div><input class="img-slot-input" id="inpAbout" value="resize/SMM_1654.jpg" oninput="previewImg(this,'prevAbout','aboutImg')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevQuo" src="resize/FLORES2.png" alt=""></div><div class="img-slot-lbl">Citação</div><input class="img-slot-input" id="inpQuo" value="resize/FLORES2.png" oninput="previewImg(this,'prevQuo','quoteImg')" onchange="markChanged()"></div>
+      <div class="img-slot"><div class="img-slot-preview"><img id="prevCta" src="resize/FLORES2.png" alt=""></div><div class="img-slot-lbl">CTA</div><input class="img-slot-input" id="inpCta" value="resize/FLORES2.png" oninput="previewImg(this,'prevCta','ctaImg')" onchange="markChanged()"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── VÍDEOS ── -->
+  <div class="a-pnl" id="tp-vid">
+    <h2 class="a-ttl">🎬 Vídeos</h2>
+    <p class="a-sub">Cole o link do YouTube. Miniatura e player são gerados automaticamente. Deixe vazio para ocultar.</p>
+    <div id="vidEditList"></div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── TEXTOS ── -->
+  <div class="a-pnl" id="tp-txt">
+    <h2 class="a-ttl">✏️ Textos dos Capítulos</h2>
+    <div id="chEditors"></div>
+    <div class="a-div"></div>
+    <h2 class="a-ttl">Textos Gerais</h2>
+    <div class="a-g2">
+      <div class="a-fg"><label class="a-lbl">Hero — Linha topo</label><input class="a-inp" id="aHeroBadge" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Hero — Título</label><input class="a-inp" id="aHeroTitle" oninput="markChanged()"></div>
+      <div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Hero — Descrição</label><textarea class="a-inp" id="aHeroSub" rows="2" oninput="markChanged()"></textarea></div>
+      <div class="a-fg"><label class="a-lbl">Citação central</label><textarea class="a-inp" id="aQuoteText" rows="3" oninput="markChanged()"></textarea></div>
+      <div class="a-fg"><label class="a-lbl">Autor da citação</label><input class="a-inp" id="aQuoteAuthor" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Sobre — Título</label><input class="a-inp" id="aAboutTitle" oninput="markChanged()"></div>
+      <div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Sobre — Texto</label><textarea class="a-inp" id="aAboutBody" rows="4" oninput="markChanged()"></textarea></div>
+      <div class="a-fg"><label class="a-lbl">Assinatura</label><input class="a-inp" id="aAboutSig" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">CTA — Título</label><input class="a-inp" id="aCtaTitle" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Rodapé — Tagline</label><input class="a-inp" id="aFooterTag" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Copyright</label><input class="a-inp" id="aCopy" oninput="markChanged()"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── DEPOIMENTOS ── -->
+  <div class="a-pnl" id="tp-tst">
+    <h2 class="a-ttl">💬 Depoimentos</h2>
+    <p class="a-sub">Edite os depoimentos, depois exporte o JSON para publicar.</p>
+    <div id="testiEditors"></div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── NÚMEROS ── -->
+  <div class="a-pnl" id="tp-num">
+    <h2 class="a-ttl">📊 Estatísticas</h2>
+    <div class="a-g2">
+      <div class="a-fg"><label class="a-lbl">Casamentos</label><input class="a-inp" type="number" id="aSt1" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Label</label><input class="a-inp" id="aSL1" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Experiência (anos)</label><input class="a-inp" type="number" id="aSt2" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Label</label><input class="a-inp" id="aSL2" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Fotos (mil)</label><input class="a-inp" type="number" id="aSt3" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Label</label><input class="a-inp" id="aSL3" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Estados</label><input class="a-inp" type="number" id="aSt4" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Label</label><input class="a-inp" id="aSL4" oninput="markChanged()"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── CONTATOS ── -->
+  <div class="a-pnl" id="tp-ctt">
+    <h2 class="a-ttl">📞 Contatos</h2>
+    <div class="a-g2">
+      <div class="a-fg"><label class="a-lbl">WhatsApp (DDI+DDD+número)</label><input class="a-inp" id="aWa" placeholder="+55 85 99999-9999" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Mensagem automática</label><input class="a-inp" id="aWaMsg" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Instagram (URL)</label><input class="a-inp" id="aIg" placeholder="https://instagram.com/scweddings" oninput="markChanged()"></div>
+      <div class="a-fg"><label class="a-lbl">Facebook (URL)</label><input class="a-inp" id="aFb" placeholder="https://facebook.com/scweddings" oninput="markChanged()"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">↗ Vá em <strong>💾 Exportar</strong> para salvar estas alterações.</p>
+  </div>
+
+  <!-- ── SENHA ── -->
+  <div class="a-pnl" id="tp-pwd">
+    <h2 class="a-ttl">🔒 Senha</h2>
+    <p class="a-sub">A senha fica salva neste navegador. Padrão: <strong>admin123</strong>.</p>
+    <div class="a-g2" style="max-width:480px">
+      <div class="a-fg"><label class="a-lbl">Nova Senha</label><input class="a-inp" type="password" id="newP2" placeholder="••••••"></div>
+      <div class="a-fg"><label class="a-lbl">Confirmar</label><input class="a-inp" type="password" id="confP2" placeholder="••••••"></div>
+    </div>
+    <button class="a-save" id="btnPwd2" style="margin-top:16px">Atualizar →</button>
+    <div class="a-ok" id="pwdOk2">✓ Atualizada!</div>
+  </div>
+</div><!-- /admin -->
+
+<!-- ═══════ JAVASCRIPT ═══════ -->
+<script>
+'use strict';
+
+/* ── DOM shortcuts ── */
+var $ = function(id){ return document.getElementById(id); };
+var $$ = function(s){ return document.querySelectorAll(s); };
+
+/* ── State: the single source of truth ── */
+var DATA = null;    // loaded from data/site.json
+var DIRTY = false;  // unsaved changes flag
+
+/* ── Password ── */
+function getPass(){ return localStorage.getItem('scwPass') || 'admin123'; }
+
+/* ── Render page from DATA object ── */
+function render(d) {
+  if (!d) return;
+  DATA = d;
+
+  function s(id, val, html) {
+    var e = $(id);
+    if (!e || val == null) return;
+    html ? (e.innerHTML = val) : (e.textContent = val);
+  }
+
+  s('heroBadge', d.heroBadge);
+  s('heroTitle', d.heroTitle, true);
+  s('heroSub',   d.heroSub,   true);
+  s('gallEye',   d.gallEye);
+  s('gallTitle', d.gallTitle, true);
+  s('gallDesc',  d.gallDesc);
+  s('quoteText', d.quoteText);
+  s('quoteAuthor', d.quoteAuthor);
+  s('aboutEye',  d.aboutEye);
+  s('aboutTitle',d.aboutTitle, true);
+  s('aboutBody', d.aboutBody,  true);
+  s('aboutSig',  d.aboutSig);
+  s('testiEye',  d.testiEye);
+  s('testiTitle',d.testiTitle, true);
+  s('ctaEye',    d.ctaEye);
+  s('ctaTitle',  d.ctaTitle,   true);
+  s('footerTag', d.footerTag);
+  s('footerCopy',d.footerCopy);
+  s('vidEye',    d.vidEye);
+  s('vidTitle',  d.vidTitle,   true);
+  s('vidDesc',   d.vidDesc);
+  s('sL1', d.sl1); s('sL2', d.sl2); s('sL3', d.sl3); s('sL4', d.sl4);
+
+  // Chapters
+  var chs = d.chapters || [];
+  chs.forEach(function(c, i) {
+    s('chNum'+i,   c.num);
+    s('chTag'+i,   c.tag);
+    s('chTitle'+i, c.title, true);
+    s('chDesc'+i,  c.desc);
+  });
+
+  // Testimonials
+  var ts = d.testis || [];
+  ts.forEach(function(t, i) {
+    s('tn'+i, t.name); s('td'+i, t.date); s('tt'+i, t.text);
+  });
+
+  // Images — set src from filenames in data
+  var imgs = d.images || {};
+  var IMG_MAP = {
+    heroImg:'heroImg', chImg0:'chImg0', chImg1:'chImg1', chImg2:'chImg2',
+    chImg3:'chImg3', chImg4:'chImg4', chImg5:'chImg5',
+    mini1:'mini1', mini2:'mini2', mini3:'mini3', mini4:'mini4',
+    mini5:'mini5', mini6:'mini6', mini7:'mini7', mini8:'mini8',
+    aboutImg:'aboutImg', quoteImg:'quoteImg', ctaImg:'ctaImg'
+  };
+  Object.keys(IMG_MAP).forEach(function(k) {
+    if (imgs[k]) { var e=$(k); if(e) e.src = imgs[k]; }
+  });
+  ['1','2','3','4','5','6','7','8'].forEach(function(n) {
+    if (imgs['miniL'+n]) s('miniL'+n, imgs['miniL'+n]);
+  });
+
+  // Contacts
+  var waNum = (d.wa||'').replace(/\D/g,'');
+  var waMsg = encodeURIComponent(d.waMsg||'Olá!');
+  var waUrl = waNum ? 'https://wa.me/'+waNum+'?text='+waMsg : '#';
+  var onWa = function(){
+    if(waNum) window.open(waUrl,'_blank');
+    else alert('Configure o WhatsApp na aba 📞 Contatos.');
+  };
+  $('waBtn').onclick = onWa;
+  $('floatWa').onclick = onWa;
+  $('fWa').href = waUrl;
+  if(d.ig){ $('igBtn').onclick=function(){window.open(d.ig,'_blank');}; $('fInsta').href=d.ig; }
+  if(d.fb){ $('fFace').href=d.fb; }
+
+  // Visibility
+  $('videoSec').classList.toggle('hidden', !d.showVideo);
+  $('miniSec').classList.toggle('hidden',  !d.showMini);
+  var dv=$('deskVidLink'), mv=$('mobVidLink');
+  if(dv) dv.style.display = d.showVideo?'':'none';
+  if(mv) mv.style.display = d.showVideo?'':'none';
+
+  // Videos
+  renderVideos(d);
+}
+
+/* ── VIDEOS ── */
+function ytId(url) {
+  if(!url) return null;
+  var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&\s]+)/);
+  return m ? m[1] : null;
+}
+function renderVideos(d) {
+  var vids = (d.videos||[]).filter(function(v){ return !!ytId(v.url); });
+  var grid = $('vidGrid'); if(!grid) return;
+  grid.innerHTML = '';
+  if(!vids.length){
+    grid.innerHTML='<p style="color:rgba(255,255,255,.3);font-size:14px;padding:0 20px 40px;grid-column:1/-1">Nenhum vídeo cadastrado. Adicione links do YouTube na aba 🎬 Vídeos.</p>';
+    return;
+  }
+  vids.forEach(function(v){
+    var id=ytId(v.url);
+    var c=document.createElement('div'); c.className='vid-card';
+    c.innerHTML='<div class="vid-thumb" onclick="openVlb(\''+id+'\')"><img src="https://img.youtube.com/vi/'+id+'/maxresdefault.jpg" loading="lazy" onerror="this.src=\'https://img.youtube.com/vi/'+id+'/hqdefault.jpg\'"><div class="play-btn"><div class="play-arr"></div></div></div>'
+      +'<div class="vid-info"><div class="vid-ttl">'+(v.title||'Sem título')+'</div><div class="vid-dsc">'+(v.desc||'')+'</div>'
+      +(v.tag?'<div class="vid-tag"><div style="width:20px;height:1px;background:var(--gold);display:inline-block;vertical-align:middle;margin-right:6px"></div><span>'+v.tag+'</span></div>':'')+'</div>';
+    grid.appendChild(c);
+  });
+}
+function openVlb(ytid){ $('vlbFrame').src='https://www.youtube.com/embed/'+ytid+'?autoplay=1&rel=0'; $('vlb').classList.add('on'); document.body.style.overflow='hidden'; }
+function closeVlb(){ $('vlbFrame').src=''; $('vlb').classList.remove('on'); document.body.style.overflow=''; }
+$('vlbClose').addEventListener('click', closeVlb);
+$('vlb').addEventListener('click', function(e){ if(e.target===$('vlb')) closeVlb(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeVlb(); });
+
+/* ── NAV ── */
+window.addEventListener('scroll', function(){ $('nav').classList.toggle('solid', window.scrollY>40); }, {passive:true});
+var ham=$('ham'), mob=$('mobMenu');
+ham.addEventListener('click', function(){
+  ham.classList.toggle('open'); mob.classList.toggle('open');
+  document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+});
+function closeMob(){ ham.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── SCROLL REVEAL ── */
+var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); }); },{threshold:.08});
+$$('.reveal').forEach(function(el){ ro.observe(el); });
+
+/* ── COUNTER ── */
+function animN(el, target, suf) {
+  suf = suf||''; var s=null;
+  var run=function(ts){ if(!s)s=ts; var p=Math.min((ts-s)/1600,1); el.innerHTML=Math.floor(p*target)+suf; if(p<1) requestAnimationFrame(run); else el.innerHTML=target+suf; };
+  requestAnimationFrame(run);
+}
+var counted=false;
+new IntersectionObserver(function(es){
+  if(es[0].isIntersecting&&!counted){ counted=true; var d=DATA||{st1:350,st2:10,st3:80,st4:12};
+    animN($('sN1'),+d.st1); animN($('sN2'),+d.st2);
+    animN($('sN3'),+d.st3,'<sup>k</sup>'); animN($('sN4'),+d.st4);
+  }
+},{threshold:.3}).observe(document.querySelector('.stats'));
+
+/* ── TESTI DOTS ── */
+function scrollTesti(i){
+  var t=$('testiScroll'), c=t.children[i];
+  if(c) t.scrollTo({left:c.offsetLeft,behavior:'smooth'});
+  $$('.tdot').forEach(function(d,j){ d.classList.toggle('act',j===i); });
+}
+$('testiScroll').addEventListener('scroll', function(){
+  var cs=[].slice.call(this.children), mid=this.scrollLeft+this.offsetWidth/2;
+  var ci=0,mn=Infinity;
+  cs.forEach(function(c,i){ var dv=Math.abs(c.offsetLeft+c.offsetWidth/2-mid); if(dv<mn){mn=dv;ci=i;} });
+  $$('.tdot').forEach(function(d,j){ d.classList.toggle('act',j===ci); });
+},{passive:true});
+
+/* ── LOGIN ── */
+$('openLoginBtn').addEventListener('click', function(){
+  $('loginOverlay').classList.add('on');
+  $('loginErr').style.display='none';
+  $('loginUser').value=''; $('loginPass').value='';
+  setTimeout(function(){ $('loginUser').focus(); },300);
+});
+$('closeLoginBtn').addEventListener('click', function(){ $('loginOverlay').classList.remove('on'); });
+$('loginOverlay').addEventListener('click', function(e){ if(e.target===$('loginOverlay')) $('loginOverlay').classList.remove('on'); });
+function doLogin(){
+  if($('loginUser').value.trim()==='admin'&&$('loginPass').value===getPass()){
+    $('loginOverlay').classList.remove('on'); openAdmin();
+  } else { $('loginErr').style.display='block'; }
+}
+$('loginBtn').addEventListener('click', doLogin);
+$('loginPass').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+
+/* ── ADMIN TABS ── */
+$$('.a-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    $$('.a-tab').forEach(function(t){ t.classList.remove('act'); });
+    $$('.a-pnl').forEach(function(p){ p.classList.remove('act'); });
+    tab.classList.add('act');
+    $(tab.dataset.tab).classList.add('act');
+  });
+});
+function openAdmin(){ loadAdminFields(); $('admin').classList.add('on'); document.body.style.overflow='hidden'; }
+$('closeAdminBtn').addEventListener('click', function(){ $('admin').classList.remove('on'); document.body.style.overflow=''; });
+
+/* ── DIRTY FLAG ── */
+function markChanged(){
+  DIRTY=true;
+  var s=$('exportStatus');
+  if(s) s.innerHTML='<span class="unsaved-badge">⚠ Alterações não exportadas</span>';
+}
+
+/* ── IMAGE PREVIEW (live) ── */
+function previewImg(inp, previewId, pageId){
+  markChanged();
+  var val = inp.value.trim();
+  // Preview immediately, validate via onerror
+  var prev=$(previewId); if(prev) prev.src = val;
+  var page=$(pageId);    if(page) page.src = val;
+  // Visual feedback
+  var testImg=new Image();
+  testImg.onload=function(){ inp.classList.remove('err'); inp.classList.add('ok'); };
+  testImg.onerror=function(){ inp.classList.remove('ok'); inp.classList.add('err'); };
+  testImg.src=val;
+}
+
+/* ── ACCORDION ── */
+function accTog(bId, tId){
+  var b=$(bId), t=$(tId);
+  var o=b.classList.toggle('open'); if(t) t.classList.toggle('open',o);
+}
+
+/* ── BUILD EDITORS ── */
+function buildChEditors(d){
+  var list=$('chEditors'); list.innerHTML='';
+  (d.chapters||[]).forEach(function(c,i){
+    var title=(c.title||'').replace(/<[^>]+>/g,'');
+    var div=document.createElement('div'); div.className='acc';
+    div.innerHTML='<div class="acc-hd" onclick="accTog(\'cb'+i+'\',\'ct'+i+'\')">'
+      +'<span class="acc-nm">'+(c.num||'Cap.'+(i+1))+' — '+title+'</span>'
+      +'<button class="acc-tg" id="ct'+i+'">▾</button></div>'
+      +'<div class="acc-bd" id="cb'+i+'"><div class="a-g2" style="margin-top:4px">'
+      +'<div class="a-fg"><label class="a-lbl">Número</label><input class="a-inp" id="cN'+i+'" value="'+(c.num||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg"><label class="a-lbl">Tag</label><input class="a-inp" id="cTag'+i+'" value="'+(c.tag||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Título</label><input class="a-inp" id="cTi'+i+'" value="'+(c.title||'').replace(/"/g,'&quot;')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Descrição</label><textarea class="a-inp" id="cD'+i+'" rows="3" oninput="markChanged()">'+(c.desc||'')+'</textarea></div>'
+      +'</div></div>';
+    list.appendChild(div);
+  });
+}
+
+function buildTestiEditors(d){
+  var list=$('testiEditors'); list.innerHTML='';
+  (d.testis||[]).forEach(function(t,i){
+    var div=document.createElement('div'); div.className='acc';
+    div.innerHTML='<div class="acc-hd" onclick="accTog(\'tb'+i+'\',\'tg'+i+'\')">'
+      +'<span class="acc-nm">'+(t.name||'Depoimento '+(i+1))+'</span>'
+      +'<button class="acc-tg" id="tg'+i+'">▾</button></div>'
+      +'<div class="acc-bd" id="tb'+i+'"><div class="a-g2" style="margin-top:4px">'
+      +'<div class="a-fg"><label class="a-lbl">Nome</label><input class="a-inp" id="tiN'+i+'" value="'+(t.name||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg"><label class="a-lbl">Data / Local</label><input class="a-inp" id="tiD'+i+'" value="'+(t.date||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Texto</label><textarea class="a-inp" id="tiT'+i+'" rows="3" oninput="markChanged()">'+(t.text||'')+'</textarea></div>'
+      +'</div></div>';
+    list.appendChild(div);
+  });
+}
+
+function buildVidEditors(d){
+  var list=$('vidEditList'); list.innerHTML='';
+  (d.videos||[]).forEach(function(v,i){
+    var id=ytId(v.url);
+    var div=document.createElement('div'); div.className='acc';
+    div.innerHTML='<div class="acc-hd" onclick="accTog(\'vb'+i+'\',\'vg'+i+'\')">'
+      +'<span class="acc-nm">'+(v.title||'Vídeo '+(i+1))+'</span>'
+      +'<button class="acc-tg" id="vg'+i+'">▾</button></div>'
+      +'<div class="acc-bd" id="vb'+i+'">'
+      +(id?'<img class="vid-prev" src="https://img.youtube.com/vi/'+id+'/maxresdefault.jpg" loading="lazy">':'')
+      +'<div class="a-g2" style="margin-top:4px">'
+      +'<div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">URL do YouTube</label>'
+      +'<input class="a-inp" id="vUrl'+i+'" value="'+(v.url||'')+'" placeholder="https://youtube.com/watch?v=..." oninput="markChanged()"><p class="vid-hint">Deixe vazio para ocultar.</p></div>'
+      +'<div class="a-fg"><label class="a-lbl">Título</label><input class="a-inp" id="vTit'+i+'" value="'+(v.title||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg"><label class="a-lbl">Tag</label><input class="a-inp" id="vTag'+i+'" value="'+(v.tag||'')+'" oninput="markChanged()"></div>'
+      +'<div class="a-fg" style="grid-column:1/-1"><label class="a-lbl">Descrição</label><input class="a-inp" id="vDes'+i+'" value="'+(v.desc||'')+'" oninput="markChanged()"></div>'
+      +'</div></div>';
+    list.appendChild(div);
+  });
+}
+
+/* ── LOAD ADMIN FIELDS ── */
+function loadAdminFields(){
+  var d=DATA||{};
+  buildChEditors(d); buildTestiEditors(d); buildVidEditors(d);
+
+  var map={aHeroBadge:'heroBadge',aHeroTitle:'heroTitle',aHeroSub:'heroSub',
+    aQuoteText:'quoteText',aQuoteAuthor:'quoteAuthor',
+    aAboutTitle:'aboutTitle',aAboutBody:'aboutBody',aAboutSig:'aboutSig',
+    aCtaTitle:'ctaTitle',aFooterTag:'footerTag',aCopy:'footerCopy'};
+  Object.keys(map).forEach(function(aid){
+    var e=$(aid); if(e) e.value=(d[map[aid]]||'').replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'');
+  });
+
+  $('aWa').value=d.wa||'';
+  $('aWaMsg').value=d.waMsg||'';
+  $('aIg').value=d.ig||'';
+  $('aFb').value=d.fb||'';
+
+  ['1','2','3','4'].forEach(function(n){
+    $('aSt'+n).value=d['st'+n]||0;
+    $('aSL'+n).value=d['sl'+n]||'';
+  });
+
+  $('togVideo').checked=!!d.showVideo;
+  $('togMini').checked=d.showMini!==false;
+
+  // Image inputs
+  var imgs=d.images||{};
+  var IM={inpHero:'heroImg',inpCh0:'chImg0',inpCh1:'chImg1',inpCh2:'chImg2',inpCh3:'chImg3',inpCh4:'chImg4',inpCh5:'chImg5',
+    inpM1:'mini1',inpM2:'mini2',inpM3:'mini3',inpM4:'mini4',inpM5:'mini5',inpM6:'mini6',inpM7:'mini7',inpM8:'mini8',
+    inpAbout:'aboutImg',inpQuo:'quoteImg',inpCta:'ctaImg'};
+  Object.keys(IM).forEach(function(inp){
+    var e=$(inp); if(e&&imgs[IM[inp]]) e.value=imgs[IM[inp]];
+  });
+
+  // File list preview
+  var files=['SMM_1654.jpg','SMM_1665.jpg','SMM_1676.jpg','SMM_1951.jpg',
+    'By@ericcorrea00-7697-2.jpg','By@ericcorrea00-7700.jpg','By@ericcorrea00-7909.jpg',
+    'By@ericcorrea00-7990.jpg','By@ericcorrea00-8036.jpg',
+    'FLORES2.png','IMG_8855.jpg','IMG_8857.jpg','_RNN5463.jpg',
+    'close-up-of-a-couple-with-their-wedding-rings-PYAVV4K-scaled.jpeg'];
+  var fp=$('fileListPreview');
+  if(fp) fp.innerHTML=files.map(function(f){ return 'resize/'+f; }).join('<br>');
+
+  // Reset dirty flag when opening admin
+  DIRTY=false;
+  var s=$('exportStatus'); if(s) s.innerHTML='<span class="saved-badge">✓ Atualizado</span>';
+}
+
+/* ── COLLECT CURRENT ADMIN STATE → JSON ── */
+function collectData(){
+  var d=JSON.parse(JSON.stringify(DATA||{}));
+
+  // Texts
+  var map={heroBadge:'aHeroBadge',heroTitle:'aHeroTitle',heroSub:'aHeroSub',
+    quoteText:'aQuoteText',quoteAuthor:'aQuoteAuthor',
+    aboutTitle:'aAboutTitle',aboutBody:'aAboutBody',aboutSig:'aAboutSig',
+    ctaTitle:'aCtaTitle',footerTag:'aFooterTag',footerCopy:'aCopy'};
+  Object.keys(map).forEach(function(k){
+    var e=$(map[k]); if(e) d[k]=e.value;
+  });
+
+  d.wa=$('aWa').value||''; d.waMsg=$('aWaMsg').value||'';
+  d.ig=$('aIg').value||''; d.fb=$('aFb').value||'';
+  d.st1=+($('aSt1').value)||0; d.st2=+($('aSt2').value)||0;
+  d.st3=+($('aSt3').value)||0; d.st4=+($('aSt4').value)||0;
+  d.sl1=$('aSL1').value||''; d.sl2=$('aSL2').value||'';
+  d.sl3=$('aSL3').value||''; d.sl4=$('aSL4').value||'';
+  d.showVideo=$('togVideo').checked;
+  d.showMini=$('togMini').checked;
+
+  // Chapters
+  d.chapters=(DATA.chapters||[]).map(function(_,i){
+    return {num:($('cN'+i)||{value:''}).value,tag:($('cTag'+i)||{value:''}).value,
+      title:($('cTi'+i)||{value:''}).value,desc:($('cD'+i)||{value:''}).value};
+  });
+
+  // Testis
+  d.testis=(DATA.testis||[]).map(function(_,i){
+    return {name:($('tiN'+i)||{value:''}).value,date:($('tiD'+i)||{value:''}).value,
+      text:($('tiT'+i)||{value:''}).value};
+  });
+
+  // Videos
+  d.videos=(DATA.videos||[]).map(function(_,i){
+    return {url:($('vUrl'+i)||{value:''}).value,title:($('vTit'+i)||{value:''}).value,
+      tag:($('vTag'+i)||{value:''}).value,desc:($('vDes'+i)||{value:''}).value};
+  });
+
+  // Images (from input fields)
+  d.images=d.images||{};
+  var IM={inpHero:'heroImg',inpCh0:'chImg0',inpCh1:'chImg1',inpCh2:'chImg2',inpCh3:'chImg3',inpCh4:'chImg4',inpCh5:'chImg5',
+    inpM1:'mini1',inpM2:'mini2',inpM3:'mini3',inpM4:'mini4',inpM5:'mini5',inpM6:'mini6',inpM7:'mini7',inpM8:'mini8',
+    inpAbout:'aboutImg',inpQuo:'quoteImg',inpCta:'ctaImg'};
+  Object.keys(IM).forEach(function(inp){
+    var e=$(inp); if(e&&e.value) d.images[IM[inp]]=e.value;
+  });
+
+  return d;
+}
+
+/* ── EXPORT (download data/site.json) ── */
+$('btnExport').addEventListener('click', function(){
+  var d=collectData();
+  // Apply to live page immediately
+  render(d);
+  // Download as site.json
+  var json=JSON.stringify(d, null, 2);
+  var blob=new Blob([json],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download='site.json'; a.click();
+  URL.revokeObjectURL(url);
+  // Update status
+  DIRTY=false;
+  var s=$('exportStatus');
+  if(s) s.innerHTML='<span class="saved-badge">✓ site.json baixado! Faça commit na pasta data/</span>';
+});
+
+/* ── PASSWORDS ── */
+function doChangePwd(np, cp, okId){
+  if(!np){alert('Digite a nova senha.');return;}
+  if(np!==cp){alert('As senhas não coincidem.');return;}
+  localStorage.setItem('scwPass',np);
+  var ok=$(okId); if(ok){ok.style.display='block'; setTimeout(function(){ok.style.display='none';},3000);}
+}
+$('btnPwd').addEventListener('click', function(){ doChangePwd($('newP').value,$('confP').value,'pwdOk'); $('newP').value=''; $('confP').value=''; });
+$('btnPwd2').addEventListener('click', function(){ doChangePwd($('newP2').value,$('confP2').value,'pwdOk2'); $('newP2').value=''; $('confP2').value=''; });
+
+/* ── LOADING ── */
+function setProgress(pct, txt){
+  $('ldProg').style.width=pct+'%';
+  if(txt) $('ldTxt').textContent=txt;
+}
+function hideLoader(){
+  setTimeout(function(){
+    $('loadScreen').classList.add('out');
+    setTimeout(function(){ $('loadScreen').style.display='none'; },700);
+  },200);
+}
+
+/* ── INIT: load data/site.json ── */
+(function init(){
+  setProgress(30,'Carregando...');
+  fetch('data/site.json?v='+Date.now())
+    .then(function(r){
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.json();
+    })
+    .then(function(d){
+      setProgress(90,'Aplicando...');
+      render(d);
+      setProgress(100,'Pronto!');
+      hideLoader();
+    })
+    .catch(function(err){
+      console.warn('data/site.json not found or invalid, using HTML defaults.', err);
+      // Page already shows defaults from HTML src attributes
+      // Create a minimal DATA object so admin still works
+      DATA = {};
+      setProgress(100,'Pronto!');
+      hideLoader();
+    });
+})();
+</script>
+</body>
+</html>
